@@ -57,7 +57,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<docker.image.prefix>springframeworkguru</docker.image.prefix>
+		<docker.image.prefix>esalomon</docker.image.prefix>
 		<docker.image.name>pageviewservice</docker.image.name>
 	</properties>
 
@@ -111,6 +111,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -122,12 +126,13 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.20.0</version>
+				<version>0.23.0</version>
 
 				<configuration>
 
-					<!--<dockerHost>http://127.0.0.1:2375</dockerHost>-->
-					<dockerHost>unix:///var/run/docker.sock</dockerHost>
+					<!--<dockerHost>http://127.0.0.1:2375</dockerHost>--> <!-- use 'docker context ls' to retrieve these values -->
+					<!--<dockerHost>unix:///var/run/docker.sock</dockerHost>--> <!-- wsl.exe -->
+					<dockerHost>npipe:////./pipe/dockerDesktopLinuxEngine</dockerHost> <!-- intelliJ -->
 
 					<verbose>true</verbose>
 					<images>
